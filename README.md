@@ -19,6 +19,7 @@ Extract War Thunder map image, map name, grid size (meters) and grid size (in pi
 ## Running
 
 1. Dump all your 2560x1440 screenshots of the map list into `images_source`. Name does not matter, just make sure they're .png or alternatively change the file extension filter in `crop_maps_and_ocr_name_and_gridsize.py`
+   - Which map list? Go to the Custom Battles map list, filter tank battles and start taking screenshots with Steam's F12
 2. Run `python crop_maps_and_ocr_name_and_gridsize.py`
    - will dump a json-ish array of arrays of the map name and the detected grid size text from the bottom right of the map image
    - will also write the map images to `output_maps/`
