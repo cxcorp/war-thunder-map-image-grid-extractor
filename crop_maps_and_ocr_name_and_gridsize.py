@@ -4,7 +4,6 @@ from PIL import Image
 import shutil
 import os
 
-
 # Directory paths
 source_dir = "./images_source"
 
@@ -49,6 +48,7 @@ def addDuplicateSuffixIfNecessary(name: str) -> str:
 
 
 # Process each image file
+print("[")
 with PyTessBaseAPI(psm=PSM.SINGLE_LINE, lang="eng") as mapNameTesseract:
     with PyTessBaseAPI(psm=PSM.SINGLE_WORD, lang="eng") as gridSquareTesseract:
         mapNameTesseract.SetVariable("tessedit_char_whitelist", map_name_chars)
@@ -88,10 +88,11 @@ with PyTessBaseAPI(psm=PSM.SINGLE_LINE, lang="eng") as mapNameTesseract:
                 image[(264 + 6) : (808 - 6), (875 + 6) : (1419 - 6)],
             )
 
-            # cv.imwrite(
-            #     os.path.join(output_fullcrop_image_dir, ocrMapName + ".png"),
-            #     image[210:808, 875:1419],
-            # )
+            cv.imwrite(
+                os.path.join(output_fullcrop_image_dir, ocrMapName + ".png"),
+                image[210:808, 875:1419],
+            )
+print("]")
 
 [
     print(f'Duplicate: "{key}": {value}')

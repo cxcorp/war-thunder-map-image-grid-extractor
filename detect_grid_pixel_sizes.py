@@ -5,7 +5,6 @@ import shutil
 import os
 import pandas as pd
 from scipy import signal
-from math import floor
 
 SOURCE_DIR = "./output_maps"
 DEBUG_DIR = "./output_grid_pixel_debug"
@@ -154,25 +153,14 @@ for i, fileName in enumerate(imageFiles):
     ax[12, 0].set_visible(False)
     ax[12, 2].set_visible(False)
 
-    # MIN_PEAK_DISTANCE_PX = 50
-    # peaks, _ = signal.find_peaks(
-    #     both_sums_norm, height=0.7, distance=MIN_PEAK_DISTANCE_PX
-    # )
-    # ax[1].plot(both_sums_norm)
-    # ax[1].plot(peaks, both_sums_norm[peaks], "x")
-    # ax[1].set_title("clipped")
-
-    # # fig.set_size_inches(20, 10)
     fig.set_size_inches(7, 30)
     fig.savefig(os.path.join(DEBUG_DIR, fileName))
     plt.close(fig)
 
-    # # print(f'"{fileName}": {np.average(np.diff(peaks))}')
-
     gridSizeInPixels = np.average(np.diff(peaks))
-    # print(
-    #     f'["{fileName.replace(".png", "").ljust(maxImageFileNameLen + 1)}", {round(gridSizeInPixels, 2)}],'
-    # )
+    print(
+        f'["{fileName.replace(".png", "").ljust(maxImageFileNameLen + 1)}", {round(gridSizeInPixels, 2)}],'
+    )
     allGridSizes.append([fileName, gridSizeInPixels])
 print("]")
 
@@ -184,9 +172,3 @@ print("Top 10: ")
 print(sortedDf.head(10))
 print("Bottom 10: ")
 print(sortedDf.tail(10))
-
-# cv.imwrite(
-#     os.path.join(DEBUG_DIR, fileName),
-#     np.vstack((bothAnd, cv.bitwise_or(horizontal, vertical), both))
-#     # cv.cvtColor(magnitude_spectrum, cv.COLOR_GRAY2BGR),
-# )
