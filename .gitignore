@@ -6,6 +6,9 @@ output_grids/
 output_maps/
 eng.traineddata
 
+maps_to_grid_pixel_size.json
+maps_to_grid_sizes.json
+
 .vscode/
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,venv
